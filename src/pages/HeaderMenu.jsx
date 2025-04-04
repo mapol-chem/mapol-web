@@ -73,7 +73,7 @@ export function HeaderMenu() {
 
   return (
     <header className={classes.header}>
-      <Container size="md">
+      <Container fluid h={50} style={{ padding: '0 150px 200px 150px' }}>
         <div className={classes.inner}>
           <Title order={2}>MAPOL</Title>
           <Group gap={5} visibleFrom="sm">
