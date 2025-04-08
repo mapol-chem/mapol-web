@@ -70,10 +70,10 @@ function App() {
 
       <Routes>
             
-            <Route path="/test-app" element={<HomePage />} />
-            <Route path="/test-app/home" element={<HomePage />} />
-            <Route path="/test-app/team" element={<TeamsPage />} />
-            <Route path="/test-app/events" element={<EventsPage />} />
+            <Route path="/mapol-web" element={<HomePage />} />
+            <Route path="/mapol-web/home" element={<HomePage />} />
+            <Route path="/mapol-web/team" element={<TeamsPage />} />
+            <Route path="/mapol-web/events" element={<EventsPage />} />
           </Routes>
          
     </div>
