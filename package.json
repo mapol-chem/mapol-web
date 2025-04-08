@@ -1,7 +1,7 @@
 {
   "name": "test_pp",
   "version": "0.1.0",
-  "homepage": "https://bibiraju.github.io/test-app",
+  "homepage": "https://mapol-chem.github.io/mapol-web",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
