@@ -60,6 +60,7 @@ const myTheme = createTheme({
 });
 function App() {
   return (
+
     <MantineProvider theme={myTheme}>
       <BrowserRouter>
     <div >
