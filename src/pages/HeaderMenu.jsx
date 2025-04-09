@@ -86,6 +86,9 @@ export function HeaderMenu() {
           <Button component={Link} to="/mapol-web/publications">
           Publications
           </Button>
+          <Button component={Link} to="/mapol-web/notebook">
+          Notebook
+          </Button>
           <Button component={Link} to="/mapol-web/events">
           Events
           </Button>

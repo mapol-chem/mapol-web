@@ -9,6 +9,7 @@ import { HeaderMenu } from './pages/HeaderMenu';
 import { HomePage } from './pages/HomePage';
 import { TeamsPage } from './pages/TeamsPage';
 import { EventsPage } from './pages/EventsPage';
+import { NoteBookPage } from './pages/NoteBookPage';
 
 //#8e8820
 
@@ -72,6 +73,7 @@ function App() {
             
             <Route path="/mapol-web/" element={<HomePage />} />
             <Route path="/mapol-web/home" element={<HomePage />} />
+            <Route path="/mapol-web/notebook" element={<NoteBookPage />} />
             <Route path="/mapol-web/team" element={<TeamsPage />} />
             <Route path="/mapol-web/events" element={<EventsPage />} />
           </Routes>
