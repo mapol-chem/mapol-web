@@ -77,22 +77,22 @@ export function HeaderMenu() {
         <div className={classes.inner}>
           <Title order={2}>MAPOL</Title>
           <Group gap={5} visibleFrom="sm">
-          <Button component={Link} to="/test-app/">
+          <Button component={Link} to="/mapol-web">
             Home
           </Button>
-          <Button component={Link} to="/test-app/team">
+          <Button component={Link} to="/mapol-web/team">
             Team
           </Button>
-          <Button component={Link} to="/test-app/publications">
+          <Button component={Link} to="/mapol-web/publications">
           Publications
           </Button>
-          <Button component={Link} to="/test-app/events">
+          <Button component={Link} to="/mapol-web/events">
           Events
           </Button>
-          <Button component={Link} to="/test-app/Highlights">
+          <Button component={Link} to="/mapol-web/Highlights">
           Highlights
           </Button>
-          <Button component={Link} to="/test-app/Github">
+          <Button component={Link} to="/mapol-web/Github">
           Github
           </Button>
           </Group>

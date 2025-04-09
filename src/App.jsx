@@ -70,7 +70,7 @@ function App() {
 
       <Routes>
             
-            <Route path="/mapol-web" element={<HomePage />} />
+            <Route path="/mapol-web/" element={<HomePage />} />
             <Route path="/mapol-web/home" element={<HomePage />} />
             <Route path="/mapol-web/team" element={<TeamsPage />} />
             <Route path="/mapol-web/events" element={<EventsPage />} />
