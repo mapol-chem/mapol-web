@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
-import { Title, Container, Textarea, Button, Box, Text } from '@mantine/core';
+import React, { useState, useEffect } from 'react';
+import { Container, Button, Box, Text, Title, Code } from '@mantine/core';
 
-export const NotebookPage = () => {
-  const [code, setCode] = useState('');
-  const [output, setOutput] = useState('');
+export const NoteBookPage = () => {
+  const [codeBlocks, setCodeBlocks] = useState([]);
+  const [outputs, setOutputs] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const runCode = async () => {
+  // Fetch Python code snippets from the backend
+  useEffect(() => {
+    const fetchCodeBlocks = async () => {
+      try {
+        const response = await fetch('/api/get-python-snippets'); // Replace with your backend endpoint
+        const data = await response.json();
+        setCodeBlocks(data.codeBlocks || []); // Expecting an array of code snippets
+        setLoading(false);
+      } catch (error) {
+        setCodeBlocks([{ id: 0, code: 'Error fetching code snippets' }]);
+        setLoading(false);
+      }
+    };
+
+    fetchCodeBlocks();
+  }, []);
+
+  const runCode = async (id, code) => {
     try {
-      // Replace with your backend API endpoint for executing Python code
       const response = await fetch('/api/execute-python', {
         method: 'POST',
         headers: {
@@ -17,34 +34,40 @@ export const NotebookPage = () => {
       });
 
       const data = await response.json();
-      setOutput(data.output || 'No output');
+      setOutputs((prevOutputs) => ({
+        ...prevOutputs,
+        [id]: data.output || 'No output',
+      }));
     } catch (error) {
-      setOutput('Error executing code');
+      setOutputs((prevOutputs) => ({
+        ...prevOutputs,
+        [id]: 'Error executing code',
+      }));
     }
-  }
+  };
 
   return (
     <Container>
       <Title order={2} mb="lg">
-        Jupyter Notebook Integration
+        Jupyter Notebooks for MAPOL
       </Title>
-      <Box mb="md">
-        <Textarea
-          placeholder="Write your Python code here..."
-          value={code}
-          onChange={(event) => setCode(event.currentTarget.value)}
-          autosize
-          minRows={6}
-        />
-        <Button mt="sm" onClick={runCode}>
-          Run Code
-        </Button>
-      </Box>
-      <Box mt="md" p="sm" style={{ backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-        <Text weight={500}>Output:</Text>
-        <Text>{output}</Text>
-      </Box>
+      {loading ? (
+        <Text>Loading...</Text>
+      ) : (
+        codeBlocks.map((block) => (
+          <Box key={block.id} mb="lg" p="sm" style={{ backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
+            <Text weight={500}>Python Code:</Text>
+            <Code block>{block.code}</Code>
+            <Button mt="sm" onClick={() => runCode(block.id, block.code)}>
+              Run Code
+            </Button>
+            <Box mt="md" p="sm" style={{ backgroundColor: '#e9ecef', borderRadius: '4px' }}>
+              <Text weight={500}>Output:</Text>
+              <Text>{outputs[block.id] || 'No output yet'}</Text>
+            </Box>
+          </Box>
+        ))
+      )}
     </Container>
-  )
-}
-
+  );
+};

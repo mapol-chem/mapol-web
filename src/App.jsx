@@ -5,11 +5,12 @@ import '@mantine/dates/styles.css';
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import { AppHeader } from './pages/AppHeader';
 import { MantineProvider, createTheme } from '@mantine/core';
+import { NoteBookPage } from './pages/NoteBookPage';
 import { HeaderMenu } from './pages/HeaderMenu';
 import { HomePage } from './pages/HomePage';
 import { TeamsPage } from './pages/TeamsPage';
 import { EventsPage } from './pages/EventsPage';
-import { NoteBookPage } from './pages/NoteBookPage';
+
 
 //#8e8820
 
@@ -73,7 +74,7 @@ function App() {
             
             <Route path="/mapol-web/" element={<HomePage />} />
             <Route path="/mapol-web/home" element={<HomePage />} />
-            <Route path="/mapol-web/notebook" element={<NoteBookPage />} />
+            <Route path="/mapol-web/notebook" element={<NoteBookPage />} /> 
             <Route path="/mapol-web/team" element={<TeamsPage />} />
             <Route path="/mapol-web/events" element={<EventsPage />} />
           </Routes>
