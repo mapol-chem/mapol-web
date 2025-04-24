@@ -1,74 +1,60 @@
-import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css";
-import "./App.css";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { MantineProvider, createTheme, Container } from "@mantine/core";
-import { HeaderMenu } from "./pages/HeaderMenu";
-import { HomePage } from "./pages/HomePage";
-import { TeamsPage } from "./pages/TeamsPage";
-import { EventsPage } from "./pages/EventsPage";
+import './App.css'
+import '@mantine/core/styles.css'
+import '@mantine/dates/styles.css'
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
+import { MantineProvider, createTheme, Box, Button } from '@mantine/core'
+import { HeaderMenu } from './pages/HeaderMenu'
+import { HomePage } from './pages/HomePage'
+import { TeamsPage } from './pages/TeamsPage'
+import { EventsPage } from './pages/EventsPage'
+import { Footer } from './pages/Footer'
+
+//#8e8820
 
 const myColors = {
-  "ocean-blue": [
-    "#7AD1DD",
-    "#5FCCDB",
-    "#44CADC",
-    "#2AC9DE",
-    "#1AC2D9",
-    "#11B7CD",
-    "#09ADC3",
-    "#0E99AC",
-    "#128797",
-    "#147885",
+  'mapol-lavender': [
+    '#eeeefc',
+    '#d8d8f2',
+    '#adade7',
+    '#817fdd',
+    '#5c59d5',
+    '#4540d0',
+    '#3934cf',
+    '#2c28b7',
+    '#2623a4',
+    '#1d1d91',
   ],
-  "mapol-yellow": [
-    "#fbfae8",
-    "#f3f2d9",
-    "#e6e3b5",
-    "#d8d48d",
-    "#ccc66b",
-    "#c4be56",
-    "#c1ba49",
-    "#a9a339",
-    "#969130",
-    "#817d22",
+  'mapol-violet': [
+    '#f8e9ff',
+    '#e8cfff',
+    '#cd9bff',
+    '#b164ff',
+    '#9a36fe',
+    '#8b19fe',
+    '#8409ff',
+    '#7100e4',
+    '#6400cc',
+    '#5600b4',
   ],
-  "mapol-lavender": [
-    "#eeeefc",
-    "#d8d8f2",
-    "#adade7",
-    "#817fdd",
-    "#5c59d5",
-    "#4540d0",
-    "#3934cf",
-    "#2c28b7",
-    "#2623a4",
-    "#1d1d91",
-  ],
-  "mapol-violet": [
-    "#f8e9ff",
-    "#e8cfff",
-    "#cd9bff",
-    "#b164ff",
-    "#9a36fe",
-    "#8b19fe",
-    "#8409ff",
-    "#7100e4",
-    "#6400cc",
-    "#5600b4",
-  ],
-};
+}
 
 // Create the theme
 const myTheme = createTheme({
   colors: myColors,
-  primaryColor: "mapol-violet", // Set the primary color to your custom color
-  fontFamily: "Inter, Roboto, sans-serif",
-  headings: {
-    fontFamily: "Inter, Roboto, sans-serif",
+  primaryColor: 'mapol-violet', // Set the primary color to your custom color
+  components: {
+    Button: {
+      defaultProps: {
+        size: 'lg', // Change default size globally
+      },
+      styles: () => ({
+        root: {
+          fontSize: '18px',
+        },
+      }),
+    },
   },
-});
-
+})
 function App() {
   return (
     <MantineProvider theme={myTheme}>
@@ -77,9 +63,12 @@ function App() {
           <header>
             <HeaderMenu />
           </header>
-          <Container
-            fluid
-            px={{ base: "20px", sm: "50px", md: "100px", lg: "150px" }}
+          <Box
+            style={{
+              height: '100vh', // Use vh to set the height to 100% of the viewport
+              width: '100%', // Width set to 100% for full page width
+              overflow: 'auto', // Allows for scrolling if the content overflows
+            }}
           >
             <Routes>
               <Route path="/mapol-web/" element={<HomePage />} />
@@ -87,11 +76,14 @@ function App() {
               <Route path="/mapol-web/team" element={<TeamsPage />} />
               <Route path="/mapol-web/events" element={<EventsPage />} />
             </Routes>
-          </Container>
+          </Box>
+          <footer>
+            <Footer />
+          </footer>
         </div>
       </BrowserRouter>
     </MantineProvider>
-  );
+  )
 }
 
-export default App;
+export default App
