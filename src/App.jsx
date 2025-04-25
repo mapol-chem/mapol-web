@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage'
 import { TeamsPage } from './pages/TeamsPage'
 import { EventsPage } from './pages/EventsPage'
 import { Footer } from './pages/Footer'
+import { Publications } from './pages/Publications'
 
 //#8e8820
 
@@ -74,6 +75,7 @@ function App() {
               <Route path="/mapol-web/" element={<HomePage />} />
               <Route path="/mapol-web/home" element={<HomePage />} />
               <Route path="/mapol-web/team" element={<TeamsPage />} />
+              <Route path="/mapol-web/publications" element={<Publications />} />
               <Route path="/mapol-web/events" element={<EventsPage />} />
             </Routes>
           </Box>
