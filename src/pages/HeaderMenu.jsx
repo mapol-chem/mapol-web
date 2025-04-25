@@ -34,7 +34,7 @@ export function HeaderMenu() {
             <Button component={Link} to="/mapol-web/Highlights">
               Highlights
             </Button>
-            <Button component={Link} to="/mapol-web/Github">
+            <Button component={Link} to="https://github.com/mapol-chem/mapol-web" target='_blank'>
               Github
             </Button>
           </Group>
