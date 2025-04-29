@@ -54,7 +54,7 @@ export const HomePage = () => {
           Objectives
         </Title>
         <Divider my="md" />
-        <List type="ordered">
+        <List type="ordered" spacing="md"> 
           <List.Item>
             <Text size="md" align="left">
               Develop a Gaussian basis set–based suite of methods spanning
