@@ -1,46 +1,121 @@
-import { Burger, Container, Group, Image, Button } from '@mantine/core'
-import { Link } from 'react-router-dom'
-import { useDisclosure } from '@mantine/hooks'
-import classes from './HeaderMenu.module.css'
-import mapol_logo from '../images/mapol-logo.png'
+import {
+  Burger,
+  Container,
+  Group,
+  Image,
+  Button,
+  Box,
+  Drawer,
+  Stack,
+} from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { useDisclosure } from '@mantine/hooks';
+import classes from './HeaderMenu.module.css';
+import mapol_logo from '../images/mapol-logo.png';
 
 export function HeaderMenu() {
-  const [opened, { toggle }] = useDisclosure(false)
+  const [opened, { toggle, close }] = useDisclosure(false);
+
+  const navigation = [
+    {
+      path: '/',
+      label: 'Home',
+    },
+    {
+      path: '/team',
+      label: 'Team',
+    },
+    {
+      path: '/publications',
+      label: 'Publications',
+    },
+    {
+      path: '/events',
+      label: 'Events',
+    },
+    {
+      path: '/highlights',
+      label: 'Highlights',
+    },
+    {
+      path: 'https://github.com/mapol-chem/mapol-web',
+      label: 'Github',
+      newTab: true,
+    },
+  ];
 
   return (
-    <header className={classes.header}>
-      <Container fluid style={{ padding: '0 150px 20px 150px' }}>
-        <div className={classes.inner}>
-          <Link to="/mapol-web">          
-          <Image
-            src={mapol_logo}
-            style={{ width: '80px', height: 'auto' }}
-            alt="Mapol Logo"
-          /></Link>
+    <Box
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 10,
+        backgroundColor: 'white',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        borderBottom: '1px solid #e0e0e0',
+        padding: '10px 0',
+      }}
+    >
+      <header>
+        <Container
+          fluid
+          px={{ base: '20px', sm: '50px', md: '100px', lg: '150px' }}
+        >
+          <div className={classes.inner}>
+            <Link to="/">
+              <Image
+                src={mapol_logo}
+                style={{ width: '80px', height: 'auto' }}
+                alt="Mapol Logo"
+              />
+            </Link>
 
-          <Group gap={5} visibleFrom="sm">
-            <Button component={Link} to="/mapol-web">
-              Home
+            <Group gap={5} visibleFrom="sm" ml="lg">
+              {navigation.map((nav, index) => {
+                return (
+                  <Button
+                    component={Link}
+                    to={nav.path}
+                    key={index}
+                    {...(nav.newTab ? { target: '_blank' } : {})}
+                  >
+                    {nav.label}
+                  </Button>
+                );
+              })}
+            </Group>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              size="sm"
+              hiddenFrom="sm"
+            />
+          </div>
+        </Container>
+      </header>
+
+      <Drawer
+        opened={opened}
+        onClose={close}
+        padding="md"
+        size="xs"
+        hiddenFrom="sm"
+        position="right"
+      >
+        <Stack>
+          {navigation.map((nav, index) => (
+            <Button
+              component={Link}
+              to={nav.path}
+              key={index}
+              {...(nav.newTab ? { target: '_blank' } : {})}
+              onClick={close}
+            >
+              {nav.label}
             </Button>
-            <Button component={Link} to="/mapol-web/team">
-              Team
-            </Button>
-            <Button component={Link} to="/mapol-web/publications">
-              Publications
-            </Button>
-            <Button component={Link} to="/mapol-web/events">
-              Events
-            </Button>
-            <Button component={Link} to="/mapol-web/Highlights">
-              Highlights
-            </Button>
-            <Button component={Link} to="https://github.com/mapol-chem/mapol-web" target='_blank'>
-              Github
-            </Button>
-          </Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-        </div>
-      </Container>
-    </header>
-  )
+          ))}
+        </Stack>
+      </Drawer>
+    </Box>
+  );
 }

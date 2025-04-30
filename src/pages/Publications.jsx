@@ -7,7 +7,7 @@ import {
   Card,
   Badge,
   Group,
-} from '@mantine/core'
+} from '@mantine/core';
 export const Publications = () => {
   const publications = [
     {
@@ -100,10 +100,10 @@ export const Publications = () => {
       journal: 'American Chemical Society (2025) ',
       link: 'https://pubs.acs.org/doi/book/10.1021/acsinfocus.7e8013',
     },
-  ]
+  ];
   return (
     <>
-      <Container fluid style={{ padding: '0 100px 80px 150px' }}>
+      <Container fluid>
         <Title order={1}>Publications</Title>
         <Space h="xl" />
         <Stack spacing="md">
@@ -137,5 +137,5 @@ export const Publications = () => {
         </Stack>
       </Container>
     </>
-  )
-}
+  );
+};

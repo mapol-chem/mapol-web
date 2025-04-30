@@ -1,9 +1,9 @@
-import { Title, Container, Divider, Space, Grid } from "@mantine/core";
-import teamData from "../data/team.json";
+import { Title, Container, Divider, Space, Grid } from '@mantine/core';
+import teamData from '../data/team.json';
 
 export const TeamsPage = () => {
   return (
-    <Container fluid style={{ padding: '0 100px 80px 150px' }}>
+    <Container fluid>
       <Title order={1}>Team</Title>
       <Space h="xl" />
 
