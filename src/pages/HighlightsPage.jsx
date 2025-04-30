@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Container,
   Space,
@@ -24,7 +25,7 @@ export const HighlightsPage = () => {
       <Title order={1}>Highlights</Title>
       <Space h="xl" />
       <Stack>
-        {highlightData.highlights.map((highlight, index) => {
+        {highlightData.highlights.map((highlight, highlightIndex) => {
           const links = [];
           if (highlight.fileName) {
             links.push({
@@ -43,7 +44,7 @@ export const HighlightsPage = () => {
 
           return (
             <Card
-              key={`highlight-${index}`}
+              key={`highlight-${highlightIndex}`}
               shadow="sm"
               padding="lg"
               radius="md"
@@ -85,12 +86,13 @@ export const HighlightsPage = () => {
                     </Text>
                   )}
                   <Group spacing="xs" mt="md">
-                    {links.map((link, index) => {
+                    {links.map((link, linkIndex) => {
                       return (
-                        <>
-                          {index > 0 && <Divider orientation="vertical" />}
+                        <React.Fragment
+                          key={`link-${highlightIndex}-${linkIndex}`}
+                        >
+                          {linkIndex > 0 && <Divider orientation="vertical" />}
                           <Text
-                            key={`link-${index}`}
                             component="a"
                             href={link.url}
                             target="_blank"
@@ -99,7 +101,7 @@ export const HighlightsPage = () => {
                           >
                             {link.label}
                           </Text>
-                        </>
+                        </React.Fragment>
                       );
                     })}
                   </Group>
