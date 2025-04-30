@@ -1,11 +1,48 @@
-import { Burger, Container, Group, Image, Button, Box } from "@mantine/core";
+import {
+  Burger,
+  Container,
+  Group,
+  Image,
+  Button,
+  Box,
+  Drawer,
+  Stack,
+} from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMenu.module.css";
 import mapol_logo from "../images/mapol-logo.png";
 
 export function HeaderMenu() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, close }] = useDisclosure(false);
+
+  const navigation = [
+    {
+      path: "/",
+      label: "Home",
+    },
+    {
+      path: "/team",
+      label: "Team",
+    },
+    {
+      path: "/publications",
+      label: "Publications",
+    },
+    {
+      path: "/events",
+      label: "Events",
+    },
+    {
+      path: "/highlights",
+      label: "Highlights",
+    },
+    {
+      path: "https://github.com/mapol-chem/mapol-web",
+      label: "Github",
+      newTab: true,
+    },
+  ];
 
   return (
     <Box
@@ -33,29 +70,19 @@ export function HeaderMenu() {
               />
             </Link>
 
-            <Group gap={5} visibleFrom="sm">
-              <Button component={Link} to="/">
-                Home
-              </Button>
-              <Button component={Link} to="/team">
-                Team
-              </Button>
-              <Button component={Link} to="/publications">
-                Publications
-              </Button>
-              <Button component={Link} to="/events">
-                Events
-              </Button>
-              <Button component={Link} to="/highlights">
-                Highlights
-              </Button>
-              <Button
-                component={Link}
-                to="https://github.com/mapol-chem/mapol-web"
-                target="_blank"
-              >
-                Github
-              </Button>
+            <Group gap={5} visibleFrom="sm" ml="lg">
+              {navigation.map((nav, index) => {
+                return (
+                  <Button
+                    component={Link}
+                    to={nav.path}
+                    key={index}
+                    {...(nav.newTab ? { target: "_blank" } : {})}
+                  >
+                    {nav.label}
+                  </Button>
+                );
+              })}
             </Group>
             <Burger
               opened={opened}
@@ -66,6 +93,29 @@ export function HeaderMenu() {
           </div>
         </Container>
       </header>
+
+      <Drawer
+        opened={opened}
+        onClose={close}
+        padding="md"
+        size="xs"
+        hiddenFrom="sm"
+        position="right"
+      >
+        <Stack>
+          {navigation.map((nav, index) => (
+            <Button
+              component={Link}
+              to={nav.path}
+              key={index}
+              {...(nav.newTab ? { target: "_blank" } : {})}
+              onClick={close}
+            >
+              {nav.label}
+            </Button>
+          ))}
+        </Stack>
+      </Drawer>
     </Box>
   );
 }
