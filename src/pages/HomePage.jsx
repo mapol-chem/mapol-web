@@ -9,8 +9,8 @@ import {
   Grid,
   Space,
   Divider,
-} from "@mantine/core";
-import mapol_graphic from "../images/mapol.jpeg";
+} from '@mantine/core';
+import mapol_graphic from '../images/mapol.jpeg';
 export const HomePage = () => {
   return (
     <>

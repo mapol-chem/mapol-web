@@ -1,5 +1,5 @@
-import { Container } from "@mantine/core";
-import { Calendar } from "@mantine/dates";
+import { Container } from '@mantine/core';
+import { Calendar } from '@mantine/dates';
 
 export const EventsPage = () => {
   return (

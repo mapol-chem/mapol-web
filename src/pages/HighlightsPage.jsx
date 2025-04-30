@@ -9,13 +9,13 @@ import {
   Stack,
   Divider,
   Flex,
-} from "@mantine/core";
-import highlightData from "../data/highlights.json";
-import dayjs from "dayjs"; // Importing dayjs for date manipulation
+} from '@mantine/core';
+import highlightData from '../data/highlights.json';
+import dayjs from 'dayjs'; // Importing dayjs for date manipulation
 
 // Function to format date strings using dayjs
 const formatDate = (dateString) => {
-  return dayjs(dateString).format("MMMM D, YYYY");
+  return dayjs(dateString).format('MMMM D, YYYY');
 };
 
 export const HighlightsPage = () => {
@@ -28,17 +28,17 @@ export const HighlightsPage = () => {
           const links = [];
           if (highlight.fileName) {
             links.push({
-              label: "Download Highlight",
+              label: 'Download Highlight',
               url: `/mapol-web/assets/highlights/${highlight.fileName}`,
             });
           }
 
           if (highlight.paperUrl) {
-            links.push({ label: "View Paper", url: highlight.paperUrl });
+            links.push({ label: 'View Paper', url: highlight.paperUrl });
           }
 
           if (highlight.eventUrl) {
-            links.push({ label: "View Event", url: highlight.eventUrl });
+            links.push({ label: 'View Event', url: highlight.eventUrl });
           }
 
           return (
@@ -52,20 +52,20 @@ export const HighlightsPage = () => {
               <Flex align="flex-start">
                 <Card.Section
                   style={{
-                    maxWidth: "65%", // Maximum width for image section
-                    marginRight: "30px", // Space between image and text content
+                    maxWidth: '65%', // Maximum width for image section
+                    marginRight: '30px', // Space between image and text content
                   }}
                 >
                   <Image
                     src={`/mapol-web/assets/highlights/images/${highlight.featuredImage}`}
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain", // Ensures the image is fully visible within its container
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain', // Ensures the image is fully visible within its container
                     }}
                   />
                 </Card.Section>
-                <div style={{ flex: "1" }}>
+                <div style={{ flex: '1' }}>
                   <Group spacing="xs" mb="xs">
                     <Title order={4}>{highlight.title}</Title>
                   </Group>

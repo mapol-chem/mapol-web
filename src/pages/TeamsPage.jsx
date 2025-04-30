@@ -1,5 +1,5 @@
-import { Title, Container, Divider, Space, Grid } from "@mantine/core";
-import teamData from "../data/team.json";
+import { Title, Container, Divider, Space, Grid } from '@mantine/core';
+import teamData from '../data/team.json';
 
 export const TeamsPage = () => {
   return (

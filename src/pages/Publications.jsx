@@ -7,98 +7,98 @@ import {
   Card,
   Badge,
   Group,
-} from "@mantine/core";
+} from '@mantine/core';
 export const Publications = () => {
   const publications = [
     {
-      title: "Ab initio Methods for Polariton Chemistry",
-      authors: "J. J. Foley IV, J. McTague, A. E. DePrince",
-      journal: "Chem. Phys. Rev. 4, 041301 (2023)",
-      link: "https://doi.org/10.1063/5.0167243",
+      title: 'Ab initio Methods for Polariton Chemistry',
+      authors: 'J. J. Foley IV, J. McTague, A. E. DePrince',
+      journal: 'Chem. Phys. Rev. 4, 041301 (2023)',
+      link: 'https://doi.org/10.1063/5.0167243',
     },
     {
       title:
-        "Relativistic Resolution-of-the-Identity with Cholesky Integral Decomposition",
-      authors: "S. Banerjee, T. Zhang, K. G. Dyall, X. Li",
-      journal: "J. Chem. Phys., 159, 114119 (2023)",
-      link: "https://pubs.aip.org/aip/jcp/article/159/11/114119/2911780",
+        'Relativistic Resolution-of-the-Identity with Cholesky Integral Decomposition',
+      authors: 'S. Banerjee, T. Zhang, K. G. Dyall, X. Li',
+      journal: 'J. Chem. Phys., 159, 114119 (2023)',
+      link: 'https://pubs.aip.org/aip/jcp/article/159/11/114119/2911780',
     },
     {
       title:
-        "Quantum Simulation of Boson-Related Hamiltonians: Techniques, Effective Hamiltonian Construction, and Error Analysis ",
+        'Quantum Simulation of Boson-Related Hamiltonians: Techniques, Effective Hamiltonian Construction, and Error Analysis ',
       authors:
-        "B. Peng, Y. Su, D. Claudino, K. Kowalski, G. H. Low, M. Roetteler",
-      journal: "",
-      link: "https://arxiv.org/abs/2307.06580",
+        'B. Peng, Y. Su, D. Claudino, K. Kowalski, G. H. Low, M. Roetteler',
+      journal: '',
+      link: 'https://arxiv.org/abs/2307.06580',
     },
     {
       title:
-        "Cavity Quantum Electrodynamics Complete Active Space Configuration Interaction Theory",
+        'Cavity Quantum Electrodynamics Complete Active Space Configuration Interaction Theory',
       authors:
-        "N. Vu, D. Mejia-Rodriguez, N. P. Bauman, A. Panyala, E. Mutlu, N. Govind, J. J. Foley IV",
+        'N. Vu, D. Mejia-Rodriguez, N. P. Bauman, A. Panyala, E. Mutlu, N. Govind, J. J. Foley IV',
       journal:
-        "Journal of Chemical Theory and Computation 2024 20 (3), 1214-1227",
-      link: "https://doi.org/10.1021/acs.jctc.3c01207",
+        'Journal of Chemical Theory and Computation 2024 20 (3), 1214-1227',
+      link: 'https://doi.org/10.1021/acs.jctc.3c01207',
     },
     {
       title:
-        "Dirac-Coulomb-Breit Molecular Mean-Field Exact-Two-Component Relativistic Equation-of-Motion Coupled-Cluster Theory",
+        'Dirac-Coulomb-Breit Molecular Mean-Field Exact-Two-Component Relativistic Equation-of-Motion Coupled-Cluster Theory',
       authors:
-        "T. Zhang, S. Banerjee, L. N. Koulias, E. F. Valeev, A. E. DePrince, X. Li,",
-      journal: "J. Phys. Chem. A, 2024, 128, 3408-3418 (2024)",
-      link: "https://pubs.acs.org/doi/full/10.1021/acs.jpca.3c08167",
+        'T. Zhang, S. Banerjee, L. N. Koulias, E. F. Valeev, A. E. DePrince, X. Li,',
+      journal: 'J. Phys. Chem. A, 2024, 128, 3408-3418 (2024)',
+      link: 'https://pubs.acs.org/doi/full/10.1021/acs.jpca.3c08167',
     },
     {
       title:
-        "Comparing Parameterized and Self-Consistent Approaches to Ab initio CQED for Molecular Polaritonic Systems",
-      authors: "R. R. Manderna, N. Vu, J. J. Foley IV",
-      journal: "J. Chem. Phys. 161, 174105 (2024)",
-      link: "https://pubs.aip.org/aip/jcp/article/161/17/174105/3318463",
+        'Comparing Parameterized and Self-Consistent Approaches to Ab initio CQED for Molecular Polaritonic Systems',
+      authors: 'R. R. Manderna, N. Vu, J. J. Foley IV',
+      journal: 'J. Chem. Phys. 161, 174105 (2024)',
+      link: 'https://pubs.aip.org/aip/jcp/article/161/17/174105/3318463',
     },
     {
       title:
-        "Quantum Electrodynamics Coupled-Cluster Theory: Exploring Photon-Induced Electron Correlations,",
+        'Quantum Electrodynamics Coupled-Cluster Theory: Exploring Photon-Induced Electron Correlations,',
       authors:
-        "H. Pathak, A. Panyala, N.P. Bauman, D. Mejia-Rodriguez, N. Govind, K. Kowalski",
-      journal: "",
-      link: "https://arxiv.org/abs/2409.06858",
-      status: "",
+        'H. Pathak, A. Panyala, N.P. Bauman, D. Mejia-Rodriguez, N. Govind, K. Kowalski',
+      journal: '',
+      link: 'https://arxiv.org/abs/2409.06858',
+      status: '',
     },
     {
       title:
-        "Real-Time Time-Dependent Cavity Quantum Electrodynamics in Gaussian Basis ",
-      authors: "D. Mejia-Rodriguez, N. Vu, J. J. Foley IV, N. Govind,",
-      journal: "",
-      link: "",
-      status: "in preparation",
+        'Real-Time Time-Dependent Cavity Quantum Electrodynamics in Gaussian Basis ',
+      authors: 'D. Mejia-Rodriguez, N. Vu, J. J. Foley IV, N. Govind,',
+      journal: '',
+      link: '',
+      status: 'in preparation',
     },
     {
       title:
-        "A Meta-Generalized Gradient Approximation Exchange-Correlation Functional for Strongly Coupled Light-Matter Systems ",
-      authors: "D. Mejia-Rodriguez, N. Govind",
-      journal: "",
-      link: "",
-      status: "in preparation",
+        'A Meta-Generalized Gradient Approximation Exchange-Correlation Functional for Strongly Coupled Light-Matter Systems ',
+      authors: 'D. Mejia-Rodriguez, N. Govind',
+      journal: '',
+      link: '',
+      status: 'in preparation',
     },
     {
       title:
-        "Polaritonic Chemistry Using the Density Matrix Renormalization Group Method",
-      authors: "M. Matoušek, N. Vu, N. Govind, J. J. Foley IV, L. Veis",
-      journal: "J. Chem. Theory Comput, 20, 9424−9434 (2024)",
-      link: "https://doi.org/10.1021/acs.jctc.4c00986",
+        'Polaritonic Chemistry Using the Density Matrix Renormalization Group Method',
+      authors: 'M. Matoušek, N. Vu, N. Govind, J. J. Foley IV, L. Veis',
+      journal: 'J. Chem. Theory Comput, 20, 9424−9434 (2024)',
+      link: 'https://doi.org/10.1021/acs.jctc.4c00986',
     },
     {
-      title: "Electronic Structure Simulations in Cloud Computing Environment",
+      title: 'Electronic Structure Simulations in Cloud Computing Environment',
       authors:
-        "E.J. Bylaska, A. Panyala, B. Peng, D. Mejia-Rodriguez, N. Govind, K. Kowalski, et al.",
-      journal: "J. Chem. Phys. 161, 150902, 2024 ",
-      link: "https://pubs.aip.org/aip/jcp/article/161/15/150902/3317271",
+        'E.J. Bylaska, A. Panyala, B. Peng, D. Mejia-Rodriguez, N. Govind, K. Kowalski, et al.',
+      journal: 'J. Chem. Phys. 161, 150902, 2024 ',
+      link: 'https://pubs.aip.org/aip/jcp/article/161/15/150902/3317271',
     },
     {
-      title: "Computational Modeling of Polariton Chemistry",
-      authors: "R. R. Manderna, P. Roden, L. Tolley, N. Vu, J. J. Foley IV",
-      journal: "American Chemical Society (2025) ",
-      link: "https://pubs.acs.org/doi/book/10.1021/acsinfocus.7e8013",
+      title: 'Computational Modeling of Polariton Chemistry',
+      authors: 'R. R. Manderna, P. Roden, L. Tolley, N. Vu, J. J. Foley IV',
+      journal: 'American Chemical Society (2025) ',
+      link: 'https://pubs.acs.org/doi/book/10.1021/acsinfocus.7e8013',
     },
   ];
   return (

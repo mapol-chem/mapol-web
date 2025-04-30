@@ -7,39 +7,39 @@ import {
   Box,
   Drawer,
   Stack,
-} from "@mantine/core";
-import { Link } from "react-router-dom";
-import { useDisclosure } from "@mantine/hooks";
-import classes from "./HeaderMenu.module.css";
-import mapol_logo from "../images/mapol-logo.png";
+} from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { useDisclosure } from '@mantine/hooks';
+import classes from './HeaderMenu.module.css';
+import mapol_logo from '../images/mapol-logo.png';
 
 export function HeaderMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
 
   const navigation = [
     {
-      path: "/",
-      label: "Home",
+      path: '/',
+      label: 'Home',
     },
     {
-      path: "/team",
-      label: "Team",
+      path: '/team',
+      label: 'Team',
     },
     {
-      path: "/publications",
-      label: "Publications",
+      path: '/publications',
+      label: 'Publications',
     },
     {
-      path: "/events",
-      label: "Events",
+      path: '/events',
+      label: 'Events',
     },
     {
-      path: "/highlights",
-      label: "Highlights",
+      path: '/highlights',
+      label: 'Highlights',
     },
     {
-      path: "https://github.com/mapol-chem/mapol-web",
-      label: "Github",
+      path: 'https://github.com/mapol-chem/mapol-web',
+      label: 'Github',
       newTab: true,
     },
   ];
@@ -47,25 +47,25 @@ export function HeaderMenu() {
   return (
     <Box
       style={{
-        position: "sticky",
+        position: 'sticky',
         top: 0,
         zIndex: 10,
-        backgroundColor: "white",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        borderBottom: "1px solid #e0e0e0",
-        padding: "10px 0",
+        backgroundColor: 'white',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        borderBottom: '1px solid #e0e0e0',
+        padding: '10px 0',
       }}
     >
       <header>
         <Container
           fluid
-          px={{ base: "20px", sm: "50px", md: "100px", lg: "150px" }}
+          px={{ base: '20px', sm: '50px', md: '100px', lg: '150px' }}
         >
           <div className={classes.inner}>
             <Link to="/">
               <Image
                 src={mapol_logo}
-                style={{ width: "80px", height: "auto" }}
+                style={{ width: '80px', height: 'auto' }}
                 alt="Mapol Logo"
               />
             </Link>
@@ -77,7 +77,7 @@ export function HeaderMenu() {
                     component={Link}
                     to={nav.path}
                     key={index}
-                    {...(nav.newTab ? { target: "_blank" } : {})}
+                    {...(nav.newTab ? { target: '_blank' } : {})}
                   >
                     {nav.label}
                   </Button>
@@ -108,7 +108,7 @@ export function HeaderMenu() {
               component={Link}
               to={nav.path}
               key={index}
-              {...(nav.newTab ? { target: "_blank" } : {})}
+              {...(nav.newTab ? { target: '_blank' } : {})}
               onClick={close}
             >
               {nav.label}
