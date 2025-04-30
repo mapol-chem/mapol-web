@@ -9,12 +9,12 @@ import {
   Grid,
   Space,
   Divider,
-} from '@mantine/core'
-import mapol_graphic from '../images/mapol.jpeg'
+} from "@mantine/core";
+import mapol_graphic from "../images/mapol.jpeg";
 export const HomePage = () => {
   return (
     <>
-      <Container fluid style={{ padding: '0 100px 80px 150px' }}>
+      <Container fluid>
         <Title align="left" order={1}>
           Many-Body Methods, Spectroscopies, and Dynamics for Molecular
           Polaritonic Systems
