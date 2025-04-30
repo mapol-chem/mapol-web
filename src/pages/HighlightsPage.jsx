@@ -6,74 +6,109 @@ import {
   Title,
   Group,
   Image,
-  SimpleGrid,
+  Stack,
   Divider,
+  Flex,
 } from "@mantine/core";
 import highlightData from "../data/highlights.json";
+import dayjs from "dayjs"; // Importing dayjs for date manipulation
+
+// Function to format date strings using dayjs
+const formatDate = (dateString) => {
+  return dayjs(dateString).format("MMMM D, YYYY");
+};
 
 export const HighlightsPage = () => {
   return (
     <Container fluid>
       <Title order={1}>Highlights</Title>
       <Space h="xl" />
-      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
-        {highlightData.highlights.map((highlight, index) => (
-          <Card key={index} shadow="sm" padding="lg" radius="md" withBorder>
-            <Card.Section
-              style={{
-                position: "relative", // To make position absolute work correctly
-                height: 0,
-                paddingBottom: "56.25%", // 16:9 aspect ratio (you can change this as needed)
-              }}
+      <Stack>
+        {highlightData.highlights.map((highlight, index) => {
+          const links = [];
+          if (highlight.fileName) {
+            links.push({
+              label: "Download Highlight",
+              url: `/mapol-web/assets/highlights/${highlight.fileName}`,
+            });
+          }
+
+          if (highlight.paperUrl) {
+            links.push({ label: "View Paper", url: highlight.paperUrl });
+          }
+
+          if (highlight.eventUrl) {
+            links.push({ label: "View Event", url: highlight.eventUrl });
+          }
+
+          return (
+            <Card
+              key={`highlight-${index}`}
+              shadow="sm"
+              padding="lg"
+              radius="md"
+              withBorder
             >
-              <Image
-                src={`/mapol-web/assets/highlights/images/${highlight.featuredImage}`}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover", // Adjusts the image to cover the specified area
-                }}
-              />
-            </Card.Section>
-            <Group spacing="xs" py="xs">
-              <Title order={4}>{highlight.title}</Title>
-            </Group>
-            {highlight.authors && (
-              <Text size="sm" mb="xs" fs="italic" c="#696969">
-                {highlight.authors}
-              </Text>
-            )}
-            <Group spacing="xs" mt="xs">
-              <Text
-                component="a"
-                href={`/mapol-web/assets/highlights/${highlight.fileName}`}
-                target="_blank"
-                c="#4d4dff"
-                size="sm"
-              >
-                View highlight
-              </Text>
-              {highlight.paperUrl && (
-                <>
-                  <Divider orientation="vertical" mx="xs" />
-                  <Text
-                    component="a"
-                    href={highlight.paperUrl}
-                    target="_blank"
-                    c="#4d4dff"
-                    size="sm"
-                  >
-                    View paper
-                  </Text>
-                </>
-              )}
-            </Group>
-          </Card>
-        ))}
-      </SimpleGrid>
+              <Flex align="flex-start">
+                <Card.Section
+                  style={{
+                    maxWidth: "65%", // Maximum width for image section
+                    marginRight: "30px", // Space between image and text content
+                  }}
+                >
+                  <Image
+                    src={`/mapol-web/assets/highlights/images/${highlight.featuredImage}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain", // Ensures the image is fully visible within its container
+                    }}
+                  />
+                </Card.Section>
+                <div style={{ flex: "1" }}>
+                  <Group spacing="xs" mb="xs">
+                    <Title order={4}>{highlight.title}</Title>
+                  </Group>
+                  {highlight.date && (
+                    <Text size="md" mb="xs" fw={500}>
+                      {formatDate(highlight.date)}
+                    </Text>
+                  )}
+                  {highlight.authors && (
+                    <Text size="sm" mb="xs" fs="italic" c="#696969">
+                      {highlight.authors}
+                    </Text>
+                  )}
+                  {highlight.summary && (
+                    <Text size="sm" mb="xs">
+                      {highlight.summary}
+                    </Text>
+                  )}
+                  <Group spacing="xs" mt="md">
+                    {links.map((link, index) => {
+                      return (
+                        <>
+                          {index > 0 && <Divider orientation="vertical" />}
+                          <Text
+                            key={`link-${index}`}
+                            component="a"
+                            href={link.url}
+                            target="_blank"
+                            c="#4d4dff"
+                            size="sm"
+                          >
+                            {link.label}
+                          </Text>
+                        </>
+                      );
+                    })}
+                  </Group>
+                </div>
+              </Flex>
+            </Card>
+          );
+        })}
+      </Stack>
     </Container>
   );
 };
