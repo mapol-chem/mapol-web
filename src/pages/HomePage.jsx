@@ -8,16 +8,16 @@ import {
   Stack,
   Grid,
   Space,
-  Divider
+  Divider,
 } from '@mantine/core'
 import mapol_graphic from '../images/mapol.jpeg'
 export const HomePage = () => {
   return (
     <>
-      <Container fluid style={{ padding: '0 150px 200px 150px' }}>
+      <Container fluid style={{ padding: '0 100px 80px 150px' }}>
         <Title align="left" order={1}>
           Many-Body Methods, Spectroscopies, and Dynamics for Molecular
-          Polaritonic SystemsPermalink
+          Polaritonic Systems
         </Title>
 
         <Grid align="center">
@@ -54,7 +54,7 @@ export const HomePage = () => {
           Objectives
         </Title>
         <Divider my="md" />
-        <List type="ordered" >
+        <List type="ordered">
           <List.Item>
             <Text size="md" align="left">
               Develop a Gaussian basis set–based suite of methods spanning
@@ -63,7 +63,7 @@ export const HomePage = () => {
             </Text>
           </List.Item>
           <List.Item>
-          <Text size="md" align="left">
+            <Text size="md" align="left">
               Implement polaritonic many-body methods to fully utilize modern
               heterogeneous (CPU/GPU) high-performance computing platforms at
               DOE’s LCFs.
@@ -84,7 +84,18 @@ export const HomePage = () => {
           Funding
         </Title>
         <Divider my="md" />
+        <Text size="md" align="left">
+          The Center for Many-Body Methods, Spectroscopies, and Dynamics for
+          Molecular Polaritonic Systems (MAPOL) is funded under FWP 79715 as
+          part of the Computational Chemical Sciences (CCS) program by the U.S.
+          Department of Energy, Office of Science, Office of Basic Energy
+          Sciences, Division of Chemical Sciences, Geosciences and Biosciences
+          at Pacific Northwest National Laboratory (PNNL). PNNL is a
+          multiprogram national laboratory operated by Battelle Memorial
+          Institute for the United States Department of Energy under DOE
+          contract number DE-AC05-76RL1830.
+        </Text>
       </Container>
     </>
-  )
-}
+  );
+};

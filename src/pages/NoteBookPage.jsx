@@ -10,7 +10,7 @@ export const NoteBookPage = () => {
   useEffect(() => {
     const fetchCodeBlocks = async () => {
       try {
-        const response = await fetch('/api/get-python-snippets'); // pulls from backend and gets converted jypyter notebook blocks
+        const response = await fetch('http://127.0.0.1:5000/api/get-python-snippets'); // pulls from backend and gets converted jypyter notebook blocks
         const data = await response.json();
         setCodeBlocks(data.codeBlocks || []); // Expecting an array of code snippets
         setLoading(false);
@@ -25,7 +25,7 @@ export const NoteBookPage = () => {
   // code to run jypyter notebook blocks
   const runCode = async (id, code) => {
     try {
-      const response = await fetch('/api/execute-python', {
+      const response = await fetch('http://127.0.0.1:5000/api/execute-python', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
