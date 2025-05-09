@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderMenu.module.css';
 import mapol_logo from '../images/mapol-logo.png';
+import mapol_violet from '../images/mapol-violet.png';
 
 export function HeaderMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -64,8 +65,8 @@ export function HeaderMenu() {
           <div className={classes.inner}>
             <Link to="/">
               <Image
-                src={mapol_logo}
-                style={{ width: '80px', height: 'auto' }}
+                src={mapol_violet}
+                style={{ width: '90px', height: 'auto' }}
                 alt="Mapol Logo"
               />
             </Link>
