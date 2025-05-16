@@ -1,14 +1,15 @@
-import './App.css'
-import '@mantine/core/styles.css'
-import '@mantine/dates/styles.css'
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
-import { MantineProvider, createTheme, Box, Button } from '@mantine/core'
-import { HeaderMenu } from './pages/HeaderMenu'
-import { HomePage } from './pages/HomePage'
-import { TeamsPage } from './pages/TeamsPage'
-import { EventsPage } from './pages/EventsPage'
-import { Footer } from './pages/Footer'
-import { Publications } from './pages/Publications'
+import './App.css';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+import { MantineProvider, createTheme, Box, Container } from '@mantine/core';
+import { HeaderMenu } from './pages/HeaderMenu';
+import { HomePage } from './pages/HomePage';
+import { TeamsPage } from './pages/TeamsPage';
+import { EventsPage } from './pages/EventsPage';
+import { Footer } from './pages/Footer';
+import { Publications } from './pages/Publications';
+import { HighlightsPage } from './pages/HighlightsPage';
 
 //#8e8820
 
@@ -37,7 +38,7 @@ const myColors = {
     '#6400cc',
     '#5600b4',
   ],
-}
+};
 
 // Create the theme
 const myTheme = createTheme({
@@ -55,37 +56,40 @@ const myTheme = createTheme({
       }),
     },
   },
-})
+});
 function App() {
   return (
     <MantineProvider theme={myTheme}>
-      <BrowserRouter>
-        <div>
-          <header>
-            <HeaderMenu />
-          </header>
-          <Box
-            style={{
-              height: '100vh', // Use vh to set the height to 100% of the viewport
-              width: '100%', // Width set to 100% for full page width
-              overflow: 'auto', // Allows for scrolling if the content overflows
-            }}
+      <BrowserRouter basename="/mapol-web">
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh', // Ensures the Box takes the full height
+            justifyContent: 'space-between', // Push footer to bottom
+          }}
+        >
+          <HeaderMenu />
+          <Container
+            fluid
+            py={'30px'}
+            px={{ base: '20px', sm: '50px', md: '100px', lg: '150px' }}
+            style={{ flex: '1', width: '100%' }}
           >
             <Routes>
-              <Route path="/mapol-web/" element={<HomePage />} />
-              <Route path="/mapol-web/home" element={<HomePage />} />
-              <Route path="/mapol-web/team" element={<TeamsPage />} />
-              <Route path="/mapol-web/publications" element={<Publications />} />
-              <Route path="/mapol-web/events" element={<EventsPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/team" element={<TeamsPage />} />
+              <Route path="/publications" element={<Publications />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/highlights" element={<HighlightsPage />} />
             </Routes>
-          </Box>
-          <footer>
-            <Footer />
-          </footer>
-        </div>
+          </Container>
+          <Footer />
+        </Box>
       </BrowserRouter>
     </MantineProvider>
-  )
+  );
 }
 
-export default App
+export default App;
