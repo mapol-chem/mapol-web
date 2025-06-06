@@ -1,6 +1,6 @@
 import { Anchor, Container, Group, Image } from '@mantine/core';
 import classes from './Footer.module.css';
-import mapol_violet from '../images/mapol-violet.png';
+import mapol_logo_txt from '../images/mapol-logo-text.png';
 
 const links = [
   { link: '#', label: 'Contact' },
@@ -30,8 +30,8 @@ export const Footer = () => {
       >
         <div className={classes.inner}>
           <Image
-            src={mapol_violet}
-            style={{ width: '70px', height: 'auto' }}
+            src={mapol_logo_txt}
+            style={{ width: '100px', height: 'auto' }}
             alt="Mapol Logo"
           />
           <Group className={classes.links}>{items}</Group>

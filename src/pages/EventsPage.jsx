@@ -1,4 +1,4 @@
-import { Container, Card, Stack, Title, Text, Anchor, Group } from '@mantine/core';
+import { Container, Card, Stack, Title, Text, Anchor, Group, Space } from '@mantine/core';
 
 export const EventsPage = () => {
 
@@ -21,6 +21,8 @@ export const EventsPage = () => {
   
   return (
     <Container fluid>
+      <Title order={1}>Events</Title>
+      <Space h="xl" />
       <Stack spacing="md">
       {events.map((event, index) => (
         <Card key={index} shadow="sm" padding="lg" radius="md" withBorder>
