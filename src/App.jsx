@@ -10,6 +10,7 @@ import { EventsPage } from './pages/EventsPage';
 import { Footer } from './pages/Footer';
 import { Publications } from './pages/Publications';
 import { HighlightsPage } from './pages/HighlightsPage';
+import { NoteBookPage } from './pages/NoteBookPage';
 
 //#8e8820
 
@@ -83,6 +84,7 @@ function App() {
               <Route path="/publications" element={<Publications />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/highlights" element={<HighlightsPage />} />
+              <Route path="/notebook" element={<NoteBookPage />} />
             </Routes>
           </Container>
           <Footer />
