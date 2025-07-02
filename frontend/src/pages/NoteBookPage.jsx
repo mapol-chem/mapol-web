@@ -5,12 +5,13 @@ export const NoteBookPage = () => {
   const [codeBlocks, setCodeBlocks] = useState([]);
   const [outputs, setOutputs] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const apiUrl = import.meta.env.VITE_FLASK_API_URL;
   // Fetch Python code snippets from the backend
   useEffect(() => {
     const fetchCodeBlocks = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/get-python-snippets'); // pulls from backend and gets converted jypyter notebook blocks
+        // const response = await fetch('http://127.0.0.1:5000/api/get-python-snippets'); // pulls from backend and gets converted jypyter notebook blocks
+        const response = await fetch(`${apiUrl}/api/get-python-snippets`); 
         const data = await response.json();
         setCodeBlocks(data.codeBlocks || []); // Expecting an array of code snippets
         setLoading(false);
@@ -25,7 +26,7 @@ export const NoteBookPage = () => {
   // code to run jypyter notebook blocks
   const runCode = async (id, code) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/execute-python', {
+      const response = await fetch(`${apiUrl}/api/execute-python`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

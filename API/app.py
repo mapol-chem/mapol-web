@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import json 
 import subprocess
+from flask_cors import CORS
+
 app = Flask(__name__)
 
+CORS(app)
 @app.route('/')
 def home():
     return "Hello world, from flask"

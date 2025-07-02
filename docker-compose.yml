@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: 
+      context: ./API
+      target: development
+    ports:
+      - "8000:5000"
+    volumes:
+      - ./API:/app
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+networks:
+  app-network:
+    driver: bridge

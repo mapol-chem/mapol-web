@@ -1,6 +1,6 @@
 import { Anchor, Container, Group, Image } from '@mantine/core';
 import classes from './Footer.module.css';
-import mapol_logo_txt from '../images/mapol-logo-text.png';
+import mapol_logo_txt from '../images/mapol-logo-black-text.png';
 
 const links = [
   { link: '#', label: 'Contact' },
