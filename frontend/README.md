@@ -42,7 +42,7 @@ Start the Development Environment
 
 Create a .env file in the frontend directory:
 
-`VITE_API_URL=http://backend:8000`
+`VITE_FLASK_API_URL=http://localhost:8000`
 
 Rebuild Only One Service
 
@@ -53,3 +53,8 @@ Rebuild Only One Service
 Stop the App
 
 `docker compose down`
+
+Access the App
+
+Frontend: http://localhost:5173/mapol-web/
+Backend API: http://localhost:8000
