@@ -39,12 +39,25 @@ const myColors = {
     '#6400cc',
     '#5600b4',
   ],
-};
 
+
+'mapol-dark': [
+  "#f5f5f5",
+  "#e7e7e7",
+  "#cdcdcd",
+  "#b2b2b2",
+  "#9a9a9a",
+  "#8b8b8b",
+  "#848484",
+  "#717171",
+  "#656565",
+  "#000000"
+]
+};
 // Create the theme
 const myTheme = createTheme({
   colors: myColors,
-  primaryColor: 'mapol-violet', // Set the primary color to your custom color
+  primaryColor: 'mapol-dark', // Set the primary color to your custom color
   components: {
     Button: {
       defaultProps: {

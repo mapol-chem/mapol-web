@@ -1,0 +1,19 @@
+FROM python:3.12-slim as base
+
+workdir /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+
+# --- Development Stage ---
+FROM base AS development
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=development
+ENV FLASK_RUN_HOST=0.0.0.0
+COPY . .
+CMD ["flask", "run"]
+
+# --- Production Stage ---
+FROM base AS production
+COPY . .
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]

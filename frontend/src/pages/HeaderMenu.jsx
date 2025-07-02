@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderMenu.module.css';
-import mapol_logo_txt from '../images/mapol-logo-text.png';
+import mapol_logo_txt from '../images/mapol-logo-black-text.png';
 
 export function HeaderMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -78,7 +78,9 @@ export function HeaderMenu() {
               {navigation.map((nav, index) => {
                 return (
                   <Button
+                    variant='subtle'
                     component={Link}
+                    color='black'
                     to={nav.path}
                     key={index}
                     {...(nav.newTab ? { target: '_blank' } : {})}
