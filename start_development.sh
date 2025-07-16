@@ -33,8 +33,9 @@ fi
 
 # Start the React development server
 echo "⚛️  Starting React development server..."
-npm start &
+cd frontend && npm start &
 REACT_PID=$!
+cd ..
 sleep 5
 
 # Check if React server started

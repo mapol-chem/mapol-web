@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": "https://mapol-chem.github.io/mapol-web",
   "private": true,
-  "proxy": "http://127.0.0.1:5000",
   "dependencies": {
     "@datalayer/jupyter-react": "^1.0.1",
     "@mantine/core": "^7.17.3",
