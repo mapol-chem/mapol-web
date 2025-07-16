@@ -72,9 +72,12 @@ const myTheme = createTheme({
   },
 });
 function App() {
+  // Use basename only for production/GitHub Pages, not for local development
+  const basename = process.env.NODE_ENV === 'production' ? '/mapol-web' : '';
+  
   return (
     <MantineProvider theme={myTheme}>
-      <BrowserRouter basename="/mapol-web">
+      <BrowserRouter basename={basename}>
         <Box
           style={{
             display: 'flex',
