@@ -1,0 +1,32 @@
+{
+    "highlights": [
+        {
+            "title": "Polaritonic Chemistry with the Density Matrix Renormalization Group Method",
+            "fileName": "MAPOL-DOE-Highlight-2024_QED-DMRG.pptx",
+            "featuredImage": "MAPOL-DOE-Highlight-2024_QED-DMRG.jpg",
+            "authors": "Mikuláš Matoušek, Nam Vu, Niranjan Govind, Jonathan J. Foley IV, and Libor Veis",
+            "date": "",
+            "paperUrl": "https://doi.org/10.1021/acs.jctc.4c00986",
+            "eventUrl": "",
+            "summary": ""
+        },
+        {
+            "title": "Cavity Quantum Electrodynamics Complete Active Space Configuration Interaction Theory",
+            "featuredImage": "MAPOL-DOE-Highlight-2024_JJF_Summary_Added.jpg",
+            "authors": "Nam Vu, Daniel Mejia-Rodriguez, Nicholas P. Bauman, Ajay Panyala, Erdal Mutlu, Niranjan Govind, Jonathan J. Foley IV",
+            "date": "",
+            "paperUrl": "https://doi.org/10.1021/acs.jctc.3c01207",
+            "eventUrl": "",
+            "summary": " "
+        },
+        {
+            "title": "MolSSI-MAPOL-Charlotte Computational Molecular Science Workshop",
+            "fileName": "MAPOL-DOE-Highlight-Workshop_V3-Clean.pptx",
+            "featuredImage": "MAPOL-DOE-Highlight-Workshop_V3-Clean.jpg",
+            "date": "",
+            "paperUrl": "",
+            "eventUrl": "https://pages.charlotte.edu/molssi-mapol-workshop/",
+            "summary": ""
+        }
+    ]
+}
