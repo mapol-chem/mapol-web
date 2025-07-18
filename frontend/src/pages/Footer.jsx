@@ -4,9 +4,7 @@ import mapol_logo_txt from '../images/mapol-logo-black-text.png';
 
 const links = [
   { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' },
-  { link: '#', label: 'Blog' },
-  { link: '#', label: 'Careers' },
+  { link: '#', label: 'Privacy' }
 ];
 
 export const Footer = () => {

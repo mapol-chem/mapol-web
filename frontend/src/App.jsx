@@ -1,32 +1,20 @@
-import './App.css';
-import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css';
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
-import { MantineProvider, createTheme, Box, Container } from '@mantine/core';
-import { HeaderMenu } from './pages/HeaderMenu';
-import { HomePage } from './pages/HomePage';
-import { TeamsPage } from './pages/TeamsPage';
-import { EventsPage } from './pages/EventsPage';
-import { Footer } from './pages/Footer';
-import { Publications } from './pages/Publications';
-import { HighlightsPage } from './pages/HighlightsPage';
-import { NoteBookPage } from './pages/NoteBookPage';
+import './App.css'
+import '@mantine/core/styles.css'
+import '@mantine/dates/styles.css'
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
+import { MantineProvider, createTheme, Box, Container } from '@mantine/core'
+import { HeaderMenu } from './pages/HeaderMenu'
+import { HomePage } from './pages/HomePage'
+import { TeamsPage } from './pages/TeamsPage'
+import { EventsPage } from './pages/EventsPage'
+import { Footer } from './pages/Footer'
+import { Publications } from './pages/Publications'
+import { HighlightsPage } from './pages/HighlightsPage'
+import { TutorialsPage } from './pages/TutorialsPage'
 
 //#8e8820
 
 const myColors = {
-  'mapol-lavender': [
-    '#eeeefc',
-    '#d8d8f2',
-    '#adade7',
-    '#817fdd',
-    '#5c59d5',
-    '#4540d0',
-    '#3934cf',
-    '#2c28b7',
-    '#2623a4',
-    '#1d1d91',
-  ],
   'mapol-violet': [
     '#f8e9ff',
     '#e8cfff',
@@ -41,19 +29,19 @@ const myColors = {
   ],
 
 
-'mapol-dark': [
-  "#f5f5f5",
-  "#e7e7e7",
-  "#cdcdcd",
-  "#b2b2b2",
-  "#9a9a9a",
-  "#8b8b8b",
-  "#848484",
-  "#717171",
-  "#656565",
-  "#000000"
-]
-};
+  'mapol-dark': [
+    '#d5d7e0',
+    '#acaebf',
+    '#8c8fa3',
+    '#666980',
+    '#4d4f66',
+    '#34354a',
+    '#2b2c3d',
+    '#1d1e30',
+    '#0c0d21',
+    '#01010a',
+  ],
+}
 // Create the theme
 const myTheme = createTheme({
   colors: myColors,
@@ -70,7 +58,7 @@ const myTheme = createTheme({
       }),
     },
   },
-});
+})
 function App() {
   return (
     <MantineProvider theme={myTheme}>
@@ -97,14 +85,14 @@ function App() {
               <Route path="/publications" element={<Publications />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/highlights" element={<HighlightsPage />} />
-              <Route path="/notebook" element={<NoteBookPage />} />
+              <Route path="/tutorials" element={<TutorialsPage />} />
             </Routes>
           </Container>
           <Footer />
         </Box>
       </BrowserRouter>
     </MantineProvider>
-  );
+  )
 }
 
-export default App;
+export default App

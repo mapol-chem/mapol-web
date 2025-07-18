@@ -38,8 +38,8 @@ export function HeaderMenu() {
       label: 'Highlights',
     },
         {
-      path: '/notebook',
-      label: 'Notebook',
+      path: '/tutorials',
+      label: 'Tutorials',
     },
     {
       path: 'https://github.com/mapol-chem/mapol-web',
@@ -80,7 +80,6 @@ export function HeaderMenu() {
                   <Button
                     variant='subtle'
                     component={Link}
-                    color='black'
                     to={nav.path}
                     key={index}
                     {...(nav.newTab ? { target: '_blank' } : {})}
