@@ -1,0 +1,8 @@
+name: mapol-nb-environment
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - psi4
+  - numpy
+  - matplotlib
