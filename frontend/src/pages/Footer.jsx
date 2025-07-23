@@ -3,8 +3,8 @@ import classes from './Footer.module.css';
 import mapol_logo_txt from '../images/mapol-logo-black-text.png';
 
 const links = [
-  { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' }
+  // { link: '#', label: 'Contact' },
+  // { link: '#', label: 'Privacy' }
 ];
 
 export const Footer = () => {
