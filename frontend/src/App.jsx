@@ -86,6 +86,7 @@ function App() {
               <Route path="/events" element={<EventsPage />} />
               <Route path="/highlights" element={<HighlightsPage />} />
               <Route path="/tutorials" element={<TutorialsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Container>
           <Footer />
