@@ -1,7 +1,7 @@
 import './App.css'
 import '@mantine/core/styles.css'
 import '@mantine/dates/styles.css'
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, Navigate, BrowserRouter , HashRouter} from 'react-router-dom'
 import { MantineProvider, createTheme, Box, Container } from '@mantine/core'
 import { HeaderMenu } from './pages/HeaderMenu'
 import { HomePage } from './pages/HomePage'
@@ -62,7 +62,7 @@ const myTheme = createTheme({
 function App() {
   return (
     <MantineProvider theme={myTheme}>
-      <BrowserRouter basename="/mapol-web">
+      <HashRouter>
         <Box
           style={{
             display: 'flex',
@@ -91,7 +91,7 @@ function App() {
           </Container>
           <Footer />
         </Box>
-      </BrowserRouter>
+      </HashRouter>
     </MantineProvider>
   )
 }
