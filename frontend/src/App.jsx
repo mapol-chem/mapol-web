@@ -61,13 +61,7 @@ const myTheme = createTheme({
           fontSize: '18px',
         },
       }),
-    },
-    Anchor: {
-      defaultProps: {
-        underline: 'hover',
-        c: '#4d4dff',
-      },
-    },
+    }
   },
 });
 function App() {
