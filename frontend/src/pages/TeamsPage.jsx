@@ -1,4 +1,12 @@
-import { Title, Container, Divider, Space, Grid } from '@mantine/core';
+import {
+  Title,
+  Container,
+  Divider,
+  Space,
+  Grid,
+  Group,
+  Anchor,
+} from '@mantine/core';
 import teamData from '../data/team.json';
 
 export const TeamsPage = () => {
@@ -16,10 +24,17 @@ export const TeamsPage = () => {
             </Title>
             <Divider my="md" />
             <Grid>
-              {members.map((name) => {
+              {members.map((person) => {
                 return (
-                  <Grid.Col span={{ base: 12, md: 6 }} key={name}>
-                    {name}
+                  <Grid.Col span={{ base: 12, md: 6 }} key={person.name}>
+                    <Group>
+                      {person.name}
+                      {person.scholar && (
+                        <Anchor href={person.scholar} target="_blank" size="sm">
+                          View Google Scholar
+                        </Anchor>
+                      )}
+                    </Group>
                   </Grid.Col>
                 );
               })}

@@ -10,8 +10,8 @@ import {
   Space,
   Divider,
   Box,
-} from '@mantine/core'
-import mapol_graphic from '../images/mapol.jpeg'
+} from '@mantine/core';
+import mapol_graphic from '../images/mapol.jpeg';
 export const HomePage = () => {
   return (
     <>
@@ -60,7 +60,7 @@ export const HomePage = () => {
             </Grid.Col>
           </Grid>
         </Box>
-        <br />
+        <Space h="xl" />
         <Title align="left" order={2}>
           Objectives
         </Title>
@@ -90,7 +90,7 @@ export const HomePage = () => {
             </Text>
           </List.Item>
         </List>
-        <Space h="sm" />
+        <Space h="xl" />
         <Title align="left" order={2}>
           Funding
         </Title>
@@ -108,5 +108,5 @@ export const HomePage = () => {
         </Text>
       </Container>
     </>
-  )
-}
+  );
+};

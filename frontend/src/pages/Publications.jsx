@@ -9,16 +9,16 @@ import {
   Group,
   Image,
   Flex,
-} from '@mantine/core'
-import pub1 from '../images/publications/pub1.jpeg'
-import pub3 from '../images/publications/pub3.jpeg'
-import pub4 from '../images/publications/pub4.jpeg'
-import pub5 from '../images/publications/pub5.jpeg'
-import pub6 from '../images/publications/pub6.jpeg'
-import pub10 from '../images/publications/pub10.jpeg'
-import pub11 from '../images/publications/pub11.jpeg'
-import pub12 from '../images/publications/pub12.jpeg'
-
+  Anchor,
+} from '@mantine/core';
+import pub1 from '../images/publications/pub1.jpeg';
+import pub3 from '../images/publications/pub3.jpeg';
+import pub4 from '../images/publications/pub4.jpeg';
+import pub5 from '../images/publications/pub5.jpeg';
+import pub6 from '../images/publications/pub6.jpeg';
+import pub10 from '../images/publications/pub10.jpeg';
+import pub11 from '../images/publications/pub11.jpeg';
+import pub12 from '../images/publications/pub12.jpeg';
 
 export const Publications = () => {
   const publications = [
@@ -118,7 +118,7 @@ export const Publications = () => {
       link: 'https://pubs.acs.org/doi/book/10.1021/acsinfocus.7e8013',
       image: pub12,
     },
-  ]
+  ];
   return (
     <>
       <Container fluid>
@@ -149,15 +149,11 @@ export const Publications = () => {
                   </Text>
                   <Text size="sm">{pub.journal}</Text>
                   {pub.link && (
-                    <Text
-                      component="a"
-                      href={pub.link}
-                      target="_blank"
-                      c="#4d4dff"
-                      size="sm"
-                    >
-                      View publication
-                    </Text>
+                    <Group>
+                      <Anchor href={pub.link} target="_blank" size="sm">
+                        View Publication
+                      </Anchor>
+                    </Group>
                   )}
                 </Stack>
                 {pub.image && (
@@ -174,5 +170,5 @@ export const Publications = () => {
         </Stack>
       </Container>
     </>
-  )
-}
+  );
+};
