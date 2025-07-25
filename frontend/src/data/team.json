@@ -1,21 +1,30 @@
 {
-    "Pacific Northwest National Laboratory" : [
-        "Niranjan \"Niri\" Govind (PI)", 
-        "Karol Kowalski (co-PI)", 
-        "Nicholas Bauman", 
-        "Daniel Mejia-Rodriguez", 
-        "Ajay Panyala", 
-        "Erdal Mutlu", 
-        "Marcus Liebenthal", 
-        "Giridhar Nandipati", "David Murphy"
+    "Pacific Northwest National Laboratory": [
+        { "name": "Niranjan \"Niri\" Govind (PI, Project Director)", "scholar": "https://scholar.google.com/citations?user=YweLcZcAAAAJ&hl=en" },
+        { "name": "Karol Kowalski (co-PI)", "scholar": "https://scholar.google.com/citations?user=PLMG9z4AAAAJ&hl=en" },
+        { "name": "Nicholas Bauman", "scholar": "https://scholar.google.com/citations?user=sJaBG3QAAAAJ&hl=en" },
+        { "name": "Daniel Mejia-Rodriguez", "scholar": "https://scholar.google.com/citations?user=DJrBbVcAAAAJ&hl=es" },
+        { "name": "Ajay Panyala", "scholar": "https://scholar.google.com/citations?user=cGLVSUoAAAAJ&hl=en" },
+        { "name": "Erdal Mutlu", "scholar": "https://scholar.google.com/citations?user=pV3YK3IAAAAJ&hl=en" },
+        { "name": "Marcus Liebenthal" },
+        { "name": "Giridhar Nandipati" },
+        { "name": "David Murphy" }
     ],
-    "University of North Carolina, Charlotte" : [
-        "Jonathan \"Jay\" Foley (co-PI)", "Nam Vu", "Ruby Manderna", "Peyton Roden", "Austin Kepley"
+    "University of North Carolina, Charlotte": [
+        { "name": "Jonathan \"Jay\" Foley (co-PI, Deputy Project Director)", "scholar": "https://scholar.google.com/citations?user=9lXH__IAAAAJ&hl=en" },
+        { "name": "Nam Vu", "scholar": "https://scholar.google.com/citations?user=08vnggoAAAAJ&hl=en" },
+        { "name": "Ruby Manderna", "scholar": "https://scholar.google.com/citations?user=4XgzTW4AAAAJ&hl=en" },
+        { "name": "Peyton Roden" },
+        { "name": "Austin Kepley" }
     ],
     "University of Washington, Seattle": [
-        "Xiaosong Li (co-PI)", "Samragni Banerjee", "Kirill Shumilov", "Tianyuan Zhang"
+        { "name": "Xiaosong Li (co-PI)", "scholar": "https://scholar.google.com/citations?user=icKVNZUAAAAJ&hl=en" },
+        { "name": "Samragni Banerjee", "scholar": "https://scholar.google.com/citations?user=fuB6-N0AAAAJ&hl=en" },
+        { "name": "Kirill Shumilov", "scholar": "https://scholar.google.com/citations?user=ZyV7oKoAAAAJ&hl=en" },
+        { "name": "Tianyuan Zhang", "scholar": "https://scholar.google.com/citations?user=xr9SeI4AAAAJ&hl=en" }
     ],
     "J. Heyrovsky Institute of Physical Chemistry": [
-        "Libor Veis", "M. Matoušek"
+        { "name": "Libor Veis" },
+        { "name": "M. Matoušek" }
     ]
 }

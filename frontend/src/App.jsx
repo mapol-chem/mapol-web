@@ -1,16 +1,22 @@
-import './App.css'
-import '@mantine/core/styles.css'
-import '@mantine/dates/styles.css'
-import { Route, Routes, Navigate, BrowserRouter , HashRouter} from 'react-router-dom'
-import { MantineProvider, createTheme, Box, Container } from '@mantine/core'
-import { HeaderMenu } from './pages/HeaderMenu'
-import { HomePage } from './pages/HomePage'
-import { TeamsPage } from './pages/TeamsPage'
-import { EventsPage } from './pages/EventsPage'
-import { Footer } from './pages/Footer'
-import { Publications } from './pages/Publications'
-import { HighlightsPage } from './pages/HighlightsPage'
-import { TutorialsPage } from './pages/TutorialsPage'
+import './App.css';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import {
+  Route,
+  Routes,
+  Navigate,
+  BrowserRouter,
+  HashRouter,
+} from 'react-router-dom';
+import { MantineProvider, createTheme, Box, Container } from '@mantine/core';
+import { HeaderMenu } from './pages/HeaderMenu';
+import { HomePage } from './pages/HomePage';
+import { TeamsPage } from './pages/TeamsPage';
+import { EventsPage } from './pages/EventsPage';
+import { Footer } from './pages/Footer';
+import { Publications } from './pages/Publications';
+import { HighlightsPage } from './pages/HighlightsPage';
+import { TutorialsPage } from './pages/TutorialsPage';
 
 //#8e8820
 
@@ -28,7 +34,6 @@ const myColors = {
     '#5600b4',
   ],
 
-
   'mapol-dark': [
     '#d5d7e0',
     '#acaebf',
@@ -41,7 +46,7 @@ const myColors = {
     '#0c0d21',
     '#01010a',
   ],
-}
+};
 // Create the theme
 const myTheme = createTheme({
   colors: myColors,
@@ -57,8 +62,14 @@ const myTheme = createTheme({
         },
       }),
     },
+    Anchor: {
+      defaultProps: {
+        underline: 'hover',
+        c: '#4d4dff',
+      },
+    },
   },
-})
+});
 function App() {
   return (
     <MantineProvider theme={myTheme}>
@@ -93,7 +104,7 @@ function App() {
         </Box>
       </HashRouter>
     </MantineProvider>
-  )
+  );
 }
 
-export default App
+export default App;

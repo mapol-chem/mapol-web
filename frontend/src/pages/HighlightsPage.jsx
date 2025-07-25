@@ -10,6 +10,7 @@ import {
   Stack,
   Divider,
   Flex,
+  Anchor,
 } from '@mantine/core';
 import highlightData from '../data/highlights.json';
 import dayjs from 'dayjs'; // Importing dayjs for date manipulation
@@ -92,15 +93,9 @@ export const HighlightsPage = () => {
                           key={`link-${highlightIndex}-${linkIndex}`}
                         >
                           {linkIndex > 0 && <Divider orientation="vertical" />}
-                          <Text
-                            component="a"
-                            href={link.url}
-                            target="_blank"
-                            c="#4d4dff"
-                            size="sm"
-                          >
+                          <Anchor href={link.url} target="_blank" size="sm">
                             {link.label}
-                          </Text>
+                          </Anchor>
                         </React.Fragment>
                       );
                     })}
