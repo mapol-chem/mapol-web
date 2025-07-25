@@ -19,8 +19,292 @@ import {
   IconPlayerPlay, 
   IconEdit, 
   IconCheck, 
-  IconX 
+  IconX,
+  IconRefresh 
 } from '@tabler/icons-react';
+
+// Safe Python syntax highlighting component using React elements
+const PythonCodeHighlight = ({ code, showLineNumbers = true }) => {
+  const highlightPython = (text) => {
+    // Define Python keywords and patterns
+    const keywords = [
+      'def', 'class', 'if', 'elif', 'else', 'for', 'while', 'try', 'except', 'finally',
+      'import', 'from', 'as', 'return', 'yield', 'lambda', 'with', 'pass', 'break',
+      'continue', 'and', 'or', 'not', 'in', 'is', 'True', 'False', 'None', 'self'
+    ];
+    
+    const builtins = [
+      'print', 'len', 'range', 'str', 'int', 'float', 'list', 'dict', 'set', 'tuple',
+      'type', 'isinstance', 'hasattr', 'getattr', 'setattr', 'min', 'max', 'sum',
+      'abs', 'round', 'sorted', 'reversed', 'enumerate', 'zip', 'map', 'filter'
+    ];
+
+    const lines = text.split('\n');
+    const maxLineNumber = lines.length;
+    const lineNumberWidth = maxLineNumber.toString().length;
+    
+    return lines.map((line, lineIndex) => {
+      const tokens = [];
+      let currentPos = 0;
+      
+      // Simple tokenization - split by spaces and special characters
+      const tokenRegex = /(\s+|[^\w\s#"']+|#[^\n]*|"[^"]*"|'[^']*'|\w+)/g;
+      let match;
+      
+      while ((match = tokenRegex.exec(line)) !== null) {
+        const token = match[0];
+        let tokenElement;
+        
+        if (token.match(/^["'].*["']$/)) {
+          // String literal
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#98c379' }}>{token}</span>;
+        } else if (token.startsWith('#')) {
+          // Comment
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#5c6370', fontStyle: 'italic' }}>{token}</span>;
+        } else if (token.match(/^\d+\.?\d*$/)) {
+          // Number
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#d19a66' }}>{token}</span>;
+        } else if (keywords.includes(token)) {
+          // Keyword
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#c678dd', fontWeight: 'bold' }}>{token}</span>;
+        } else if (builtins.includes(token)) {
+          // Built-in function
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#61dafb' }}>{token}</span>;
+        } else {
+          // Regular text
+          tokenElement = <span key={`${lineIndex}-${tokens.length}`} style={{ color: '#abb2bf' }}>{token}</span>;
+        }
+        
+        tokens.push(tokenElement);
+      }
+      
+      return (
+        <div key={lineIndex} style={{ display: 'flex', minHeight: '21px' }}>
+          {showLineNumbers && (
+            <span
+              style={{
+                color: '#5c6370',
+                fontSize: '12px',
+                fontFamily: 'monospace',
+                textAlign: 'right',
+                paddingRight: '16px',
+                minWidth: `${(lineNumberWidth + 1) * 8}px`,
+                userSelect: 'none',
+                lineHeight: '1.5'
+              }}
+            >
+              {lineIndex + 1}
+            </span>
+          )}
+          <div style={{ flex: 1, lineHeight: '1.5' }}>
+            {tokens.length > 0 ? tokens : <span style={{ color: '#abb2bf' }}>{line || '\u00A0'}</span>}
+          </div>
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div 
+      style={{
+        fontFamily: 'monospace',
+        whiteSpace: 'pre-wrap',
+        color: '#abb2bf',
+        lineHeight: '1.5'
+      }}
+    >
+      {highlightPython(code)}
+    </div>
+  );
+};
+
+// Code editor component with syntax highlighting overlay and line numbers
+const CodeEditor = ({ value, onChange, minRows, placeholder }) => {
+  const textareaRef = React.useRef(null);
+  const [isFocused, setIsFocused] = React.useState(false);
+  
+  const lines = value.split('\n');
+  const maxLineNumber = lines.length;
+  const lineNumberWidth = maxLineNumber.toString().length;
+  const lineNumbersWidth = (lineNumberWidth + 1) * 8 + 16; // Width + padding
+
+  // Focus the textarea and position cursor at the end when entering edit mode
+  React.useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      // Position cursor at the end of the text
+      const length = value.length;
+      textareaRef.current.setSelectionRange(length, length);
+    }
+  }, []); // Run only once when component mounts
+
+  const handleBackgroundClick = (e) => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      
+      // Try a simpler approach: use textarea's own methods to position cursor
+      // Create a temporary element to measure line height
+      const tempDiv = document.createElement('div');
+      tempDiv.style.position = 'absolute';
+      tempDiv.style.visibility = 'hidden';
+      tempDiv.style.whiteSpace = 'pre';
+      tempDiv.style.font = window.getComputedStyle(textareaRef.current).font;
+      tempDiv.textContent = 'M\nM'; // Two lines to measure height
+      document.body.appendChild(tempDiv);
+      
+      const singleLineHeight = tempDiv.scrollHeight / 2;
+      document.body.removeChild(tempDiv);
+      
+      // Get click position relative to textarea
+      const textareaRect = textareaRef.current.getBoundingClientRect();
+      const relativeY = e.clientY - textareaRect.top - 32; // Account for padding
+      
+      // Calculate line number
+      const lineIndex = Math.max(0, Math.floor(relativeY / singleLineHeight));
+      const lines = value.split('\n');
+      
+      if (lineIndex < lines.length) {
+        // Calculate position at end of line
+        let position = 0;
+        for (let i = 0; i < lineIndex; i++) {
+          position += lines[i].length + 1; // +1 for newline
+        }
+        position += lines[lineIndex].length; // End of current line
+        
+        // Use setTimeout to ensure textarea is focused first
+        setTimeout(() => {
+          textareaRef.current.setSelectionRange(position, position);
+        }, 0);
+      }
+    }
+  };
+
+  return (
+    <Box style={{ position: 'relative' }}>
+      {/* Syntax highlighted background */}
+      <Box
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'auto', // Allow click events
+          padding: '16px',
+          paddingTop: '32px',
+          fontFamily: '"Fira Code", "Monaco", "Consolas", "Courier New", monospace',
+          fontSize: '14px',
+          lineHeight: '1.5',
+          backgroundColor: '#282c34',
+          borderRadius: '8px',
+          border: `1px solid ${isFocused ? '#61dafb' : '#3e4451'}`,
+          zIndex: 1,
+          overflow: 'hidden',
+          cursor: 'text'
+        }}
+        onClick={handleBackgroundClick}
+      >
+        <PythonCodeHighlight code={value} showLineNumbers={true} />
+      </Box>
+      
+      {/* Transparent textarea overlay */}
+      <Textarea
+        ref={textareaRef}
+        value={value}
+        onChange={onChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        minRows={minRows}
+        autosize
+        placeholder={placeholder}
+        style={{ 
+          position: 'relative',
+          zIndex: 2,
+          fontFamily: '"Fira Code", "Monaco", "Consolas", "Courier New", monospace',
+          fontSize: '14px',
+          lineHeight: '1.5',
+          padding: '16px',
+          paddingTop: '32px',
+          paddingLeft: `${lineNumbersWidth + 16}px`, // Account for line numbers + original padding
+          margin: 0
+        }}
+        styles={{
+          input: {
+            backgroundColor: 'transparent',
+            color: 'transparent',
+            border: 'none',
+            borderRadius: '8px',
+            caretColor: '#61dafb',
+            margin: 0,
+            padding: 0,
+            cursor: 'text',
+            '&:focus': {
+              borderColor: 'transparent',
+              boxShadow: 'none'
+            },
+            '&::placeholder': {
+              color: '#5c6370'
+            },
+            '&::selection': {
+              backgroundColor: 'rgba(97, 218, 251, 0.2)'
+            }
+          }
+        }}
+        mb="md"
+      />
+      
+      {/* Editing indicator */}
+      <Box
+        style={{
+          position: 'absolute',
+          top: '8px',
+          right: '12px',
+          fontSize: '10px',
+          color: '#61dafb',
+          fontWeight: 'bold',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px',
+          zIndex: 10,
+          pointerEvents: 'none'
+        }}
+      >
+        Python (Editing)
+      </Box>
+    </Box>
+  );
+};
+const PlainTextOutput = ({ text }) => {
+  // Simplified text cleaning - focus only on escape sequences and color codes
+  const sanitizeText = (input) => {
+    if (!input) return '';
+    
+    let result = String(input);
+    
+    // Remove escape sequences and color codes only
+    result = result.replace(/\x1b\[[0-9;]*[mK]/g, ''); // ANSI
+    result = result.replace(/\\u001b\[[0-9;]*[mK]/g, ''); // Unicode escapes
+    result = result.replace(/\u001b\[[0-9;]*[mK]/g, ''); // Actual unicode
+    result = result.replace(/#[0-9a-fA-F]{3,6}/g, ''); // Hex colors
+    
+    return result.trim();
+  };
+
+  return (
+    <div 
+      style={{ 
+        fontFamily: 'monospace', 
+        whiteSpace: 'pre-wrap',
+        backgroundColor: '#f8f9fa',
+        padding: '8px',
+        borderRadius: '4px',
+        marginBottom: '8px',
+        fontSize: '14px'
+      }}
+    >
+      {sanitizeText(text)}
+    </div>
+  );
+};
 
 export const NoteBookPage = () => {
   const [notebooks, setNotebooks] = useState([]);
@@ -36,7 +320,9 @@ export const NoteBookPage = () => {
   useEffect(() => {
     const fetchNotebooks = async () => {
       try {
-        const response = await fetch('/api/list-notebooks');
+        const response = await fetch('/api/list-notebooks', {
+          credentials: 'include'
+        });
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -52,6 +338,24 @@ export const NoteBookPage = () => {
     fetchNotebooks();
   }, []);
 
+  // Reset execution session
+  const resetSession = async () => {
+    try {
+      const response = await fetch('/api/reset-session', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        setOutputs({});
+        // Show success message or notification
+        console.log('Session reset successfully');
+      }
+    } catch (error) {
+      console.error('Error resetting session:', error);
+    }
+  };
+
   // Fetch code blocks when a notebook is selected
   useEffect(() => {
     if (!selectedNotebook) return;
@@ -65,6 +369,7 @@ export const NoteBookPage = () => {
         const response = await fetch('/api/get-notebook-content', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ notebook: selectedNotebook }),
         });
         
@@ -119,6 +424,7 @@ export const NoteBookPage = () => {
       const response = await fetch('/api/execute-code', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ code }),
       });
       
@@ -162,31 +468,21 @@ export const NoteBookPage = () => {
     if (output.loading) {
       return <Loader size="sm" />;
     }
+
+    // Check if execution was successful but has no output
+    const hasContent = output.textOutput || output.htmlOutput || (output.images && output.images.length > 0);
+    const wasSuccessful = !output.error && output.textOutput !== undefined; // textOutput will be defined even if empty after execution
     
     return (
       <Box>
         {output.error && (
           <Alert color="red" mb="sm">
-            <Text size="sm" style={{ fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
-              {output.error}
-            </Text>
+            <PlainTextOutput text={output.error} />
           </Alert>
         )}
         
         {output.textOutput && (
-          <Text 
-            size="sm" 
-            style={{ 
-              fontFamily: 'monospace', 
-              whiteSpace: 'pre-wrap',
-              backgroundColor: '#f8f9fa',
-              padding: '8px',
-              borderRadius: '4px',
-              marginBottom: '8px'
-            }}
-          >
-            {output.textOutput}
-          </Text>
+          <PlainTextOutput text={output.textOutput} />
         )}
         
         {output.htmlOutput && (
@@ -204,6 +500,16 @@ export const NoteBookPage = () => {
             style={{ maxWidth: '100%', marginBottom: '8px' }}
           />
         ))}
+
+        {/* Show success message when code runs without errors but produces no output */}
+        {wasSuccessful && !hasContent && (
+          <Group spacing="xs" align="center">
+            <IconCheck size={16} color="green" />
+            <Text size="sm" color="green">
+              Code executed successfully. 
+            </Text>
+          </Group>
+        )}
       </Box>
     );
   };
@@ -216,14 +522,29 @@ export const NoteBookPage = () => {
       
       <Box mb="xl">
         <Text weight={500} mb="sm">Select a Notebook:</Text>
-        <Select
-          placeholder="Choose notebook"
-          data={notebooks.map((nb) => ({ value: nb, label: nb }))}
-          value={selectedNotebook}
-          onChange={setSelectedNotebook}
-          searchable
-          nothingFound="No notebooks found"
-        />
+        <Group align="flex-end" spacing="md">
+          <Box style={{ flex: 1 }}>
+            <Select
+              placeholder="Choose notebook"
+              data={notebooks.map((nb) => ({ value: nb, label: nb }))}
+              value={selectedNotebook}
+              onChange={setSelectedNotebook}
+              searchable
+              nothingFoundMessage="No notebooks found"
+            />
+          </Box>
+          {selectedNotebook && (
+            <Button
+              leftSection={<IconRefresh size={14} />}
+              variant="outline"
+              color="orange"
+              onClick={resetSession}
+              size="sm"
+            >
+              Reset Session
+            </Button>
+          )}
+        </Group>
       </Box>
 
       {!selectedNotebook ? (
@@ -250,7 +571,7 @@ export const NoteBookPage = () => {
                     <Group spacing="xs" orientation="vertical">
                       <Button
                         size="xs"
-                        leftIcon={<IconPlayerPlay size={14} />}
+                        leftSection={<IconPlayerPlay size={14} />}
                         onClick={() => runCode(block.id, block.code)}
                         loading={executingBlocks.has(block.id)}
                         disabled={editingBlock === block.id}
@@ -291,30 +612,55 @@ export const NoteBookPage = () => {
                     <Text weight={500} mb="xs">Code:</Text>
                     
                     {editingBlock === block.id ? (
-                      <Textarea
+                      <CodeEditor
                         value={editedCode}
                         onChange={(e) => setEditedCode(e.target.value)}
-                        minRows={Math.max(3, editedCode.split('\n').length)}
-                        style={{ 
-                          fontFamily: 'monospace',
-                          fontSize: '14px'
-                        }}
-                        mb="md"
+                        minRows={Math.max(3, block.code.split('\n').length)}
+                        placeholder="Enter Python code..."
                       />
                     ) : (
                       <Box
                         mb="md"
-                        p="sm"
+                        p="md"
+                        onDoubleClick={() => startEditing(block.id, block.code)}
                         style={{
-                          backgroundColor: '#f8f9fa',
-                          borderRadius: '4px',
-                          fontFamily: 'monospace',
+                          backgroundColor: '#282c34',
+                          borderRadius: '8px',
+                          fontFamily: '"Fira Code", "Monaco", "Consolas", "Courier New", monospace',
                           fontSize: '14px',
                           whiteSpace: 'pre-wrap',
-                          border: '1px solid #e9ecef'
+                          border: '1px solid #3e4451',
+                          cursor: 'pointer',
+                          color: '#abb2bf',
+                          lineHeight: '1.5',
+                          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                          transition: 'all 0.2s ease',
+                          position: 'relative'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                          e.target.style.borderColor = '#61dafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                          e.target.style.borderColor = '#3e4451';
                         }}
                       >
-                        {block.code}
+                        <Box
+                          style={{
+                            position: 'absolute',
+                            top: '8px',
+                            right: '12px',
+                            fontSize: '10px',
+                            color: '#5c6370',
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px'
+                          }}
+                        >
+                          Python
+                        </Box>
+                        <PythonCodeHighlight code={block.code} showLineNumbers={true} />
                       </Box>
                     )}
 

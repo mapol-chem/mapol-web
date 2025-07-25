@@ -31,3 +31,12 @@ __pycache__/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Backup and temporary files
+*.backup
+*~
+~$*
+*.tmp
+
+# Test files (if not needed for CI/CD)
+test_output.py

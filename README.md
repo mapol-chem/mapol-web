@@ -25,3 +25,7 @@ Access the App
 
 Frontend: http://localhost:5173/mapol-web/
 Backend API: http://localhost:8000
+
+
+To run the application, use the script: ./start_development.sh in the 
+mapol-web root folder. 

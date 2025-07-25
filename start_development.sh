@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Starting MAPOL Web Development Environment"
+echo "Starting MAPOL Web Development Environment"
 echo "============================================="
 
 # Function to check if a port is in use
@@ -17,9 +17,9 @@ sleep 2
 
 # Start the Flask API server
 echo "🐍 Starting Flask API server..."
-cd API && python app.py &
+cd "$(dirname "$0")/API" && python app.py &
 API_PID=$!
-cd ..
+cd "$(dirname "$0")"
 sleep 3
 
 # Check if API started successfully
@@ -33,9 +33,9 @@ fi
 
 # Start the React development server
 echo "⚛️  Starting React development server..."
-cd frontend && npm start &
+cd "$(dirname "$0")/frontend" && npm start &
 REACT_PID=$!
-cd ..
+cd "$(dirname "$0")"
 sleep 5
 
 # Check if React server started
